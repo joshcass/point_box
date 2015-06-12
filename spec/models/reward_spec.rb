@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Reward, type: :model do
-    let(:reward) { Reward.create!(title: "toy yoda", description: "it's a toy yoda", cost: 1) }
+    let(:reward) { Fabricate(:reward) }
 
     it 'is valid' do
       expect(reward).to be_valid

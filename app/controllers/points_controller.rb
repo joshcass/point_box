@@ -1,26 +1,23 @@
 class PointsController < ApplicationController
   def create
-    @point = Point.new valid_params
-    if @point.save
-      redirect_to rewards_path, notice: "New point awarded"
+    user = User.friendly.find(params[:user_id])
+    point = user.points.new
+    if point.save
+      redirect_to user, notice: "New point awarded"
     else
-      flash.now[:errors] = @point.errors.full_messages.join(", ")
-      render :new
+      flash.now[:errors] = point.errors.full_messages.join(", ")
+      redirect_to user
     end
   end
 
   def destroy
-    @point = Point.find(params[:id])
-    if @point.destroy
-      redirect_to rewards_path, notice: "Point removed"
+    user = User.friendly.find(params[:user_id])
+    point = user.points.first
+    if point.destroy
+      redirect_to user, notice: "Point removed"
     else
-      flash.now[:errors] = @point.errors.full_messagesjoin(", ")
-      render nothing: true
+      flash.now[:errors] = point.errors.full_messagesjoin(", ")
+      redirect_to user
     end
-  end
-
-  private
-  def valid_params
-    params.require(:point).permit(:status)
   end
 end

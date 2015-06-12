@@ -46,5 +46,15 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+
+  gem 'fabrication'
+
+  gem 'capybara'
+
+  gem 'launchy'
+
+  gem 'database_cleaner'
+
+  gem 'faker'
 end
 
