@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :rewards
   resources :users do
-    resources :points, only: [:create]
+    post '/points', to: 'points#create'
     delete '/points', to: 'points#destroy'
   end
 end

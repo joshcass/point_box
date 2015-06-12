@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612053446) do
+ActiveRecord::Schema.define(version: 20150612124805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,6 +38,14 @@ ActiveRecord::Schema.define(version: 20150612053446) do
 
   add_index "points", ["user_id"], name: "index_points_on_user_id", using: :btree
 
+  create_table "purchases", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "reward_id"
+  end
+
+  add_index "purchases", ["reward_id"], name: "index_purchases_on_reward_id", using: :btree
+  add_index "purchases", ["user_id"], name: "index_purchases_on_user_id", using: :btree
+
   create_table "rewards", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
@@ -59,4 +67,6 @@ ActiveRecord::Schema.define(version: 20150612053446) do
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree
 
   add_foreign_key "points", "users"
+  add_foreign_key "purchases", "rewards"
+  add_foreign_key "purchases", "users"
 end

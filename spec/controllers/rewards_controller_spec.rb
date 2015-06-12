@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe RewardsController, type: :controller do
 
- let(:valid_attributes) {
+  let(:valid_attributes) {
     {title: "Toy Yoda", description: "It's a toy yoda", cost: 5}
   }
 
@@ -10,7 +10,7 @@ RSpec.describe RewardsController, type: :controller do
     {title: nil, description: nil, cost: nil}
   }
 
- let(:valid_session) { {} }
+  let(:valid_session) { {} }
 
   describe "GET #new" do
     it "assigns a new reward as @reward" do

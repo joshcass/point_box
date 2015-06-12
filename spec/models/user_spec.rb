@@ -11,4 +11,12 @@ RSpec.describe User, type: :model do
     user.username = nil
     expect(user).not_to be_valid
   end
+
+  it 'has points' do
+    expect(user).to respond_to(:points)
+  end
+
+  it 'has rewards' do
+    expect(user).to respond_to(:rewards)
+  end
 end

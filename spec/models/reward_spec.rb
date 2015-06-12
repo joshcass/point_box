@@ -27,5 +27,9 @@ RSpec.describe Reward, type: :model do
       expect(reward).not_to be_valid
     end
 
+    it 'has users' do
+      expect(reward).to respond_to(:users)
+    end
+
   end
 
