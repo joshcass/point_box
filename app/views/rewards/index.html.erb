@@ -1,0 +1,6 @@
+<h1>Rewards Index</h1>
+<ul>
+  <% @rewards.each do |reward| %>
+    <li><%= link_to reward.title, reward %></li>
+  <% end %>
+</ul>
