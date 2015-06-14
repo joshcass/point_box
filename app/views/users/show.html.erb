@@ -1,11 +1,12 @@
 <h1><%= @user.username %></h1>
-<h3>Current Point Total: <%= @user.points.awarded.count %></h3>
+<h3>Current Point Total: <%= @user.awarded_total %></h3>
 <br>
-<h3>Total Points Spent: <%= @user.points.redeemed.count %></h3>
+<h3>Total Points Spent: <%= @user.redeemed_total %></h3>
 <br>
-<p>All Time Points Awarded: <%= @user.points.count %></p>
+<p>All Time Points Awarded: <%= @user.points_total %></p>
 <br>
-<%= link_to "Award Point", user_points_path(@user), method: 'post' %>
-<%= link_to "Retract Point", user_points_path(@user), data: {confirm: "Really take away point?"}, method: 'delete' %>
+<h3>Rewards Purchased:</h3>
+<%= render partial: 'reward', collection: @user.rewards %>
+<br>
 <%= link_to "Edit", edit_user_path(@user) %><br>
 <%= link_to "Delete", @user, data: {confirm: "Really delete this account?"}, method: 'delete' %>

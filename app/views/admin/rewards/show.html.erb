@@ -1,0 +1,7 @@
+<h1><%= @reward.title %></h1>
+
+<p><%= @reward.description %></p>
+<p>Cost: <%= @reward.cost %> points</p>
+<br>
+<%= link_to "Edit", edit_admin_reward_path(@reward) %><br>
+<%= link_to "Delete", admin_reward_path(@reward), data: {confirm: "Really delete #{@reward.title}?"}, method: 'delete' %>

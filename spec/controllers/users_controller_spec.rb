@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
 
   let(:valid_attributes) {
-    {username: "hansolo"}
+    {username: "hansolo", password: "password", password_confirmation: "password"}
   }
 
   let(:invalid_attributes) {

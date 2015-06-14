@@ -1,0 +1,25 @@
+<h1><%= @user.username %></h1>
+<h3>Current Point Total: <%= @user.awarded_total %></h3>
+<br>
+<h3>Total Points Spent: <%= @user.redeemed_total %></h3>
+<br>
+<p>All Time Points Awarded: <%= @user.points_total %></p>
+<br>
+<h3>Rewards Purchased:</h3>
+<%= render partial: 'reward', collection: @user.rewards %>
+<br>
+
+<%= form_tag admin_user_points_path(@user), method: :post do %>
+  <%= label_tag(:quantity, "Award Points") %>
+  <%= number_field_tag(:quantity) %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<%= form_tag admin_user_points_path(@user), method: :delete, data: {confirm: "Retract points?"} do %>
+  <%= label_tag(:quantity, "Retract Points") %>
+  <%= number_field_tag(:quantity) %>
+  <%= submit_tag "Submit" %>
+<% end %>
+
+<%= link_to "Edit", edit_admin_user_path(@user) %><br>
+<%= link_to "Delete", admin_user_path(@user), data: {confirm: "Really delete this account?"}, method: 'delete' %>

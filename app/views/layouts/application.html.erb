@@ -11,6 +11,15 @@
   <%= content_tag :div, msg, id: "flash_#{type}" %>
 <% end %>
 
+<% if logged_in? && current_admin? %>
+  <%= render 'layouts/admin_navbar' %>
+<% elsif logged_in? %>
+  <%= render 'layouts/navbar' %>
+<% else %>
+  <%= link_to "Login", login_path %>
+  <%= link_to "Create Account", new_user_path %>
+<% end %>
+
 <%= yield %>
 
 </body>

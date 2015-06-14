@@ -1,6 +1,10 @@
-class UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  skip_before_action :current_user?, only:[:new, :create]
+  skip_before_action :current_user?
+
+  def index
+    @users = User.all
+  end
 
   def show
   end
@@ -12,8 +16,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new valid_params
     if @user.save
-      session[:user_id] = @user.id
-      redirect_to @user, notice: "New user #{@user.username} created."
+      redirect_to admin_user_path(@user), notice: "New user #{@user.username} created."
     else
       flash.now[:errors] = @user.errors.full_messages.join(", ")
       render :new
@@ -21,11 +24,12 @@ class UsersController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
     if @user.update valid_params
-      redirect_to @user, notice: "Reward #{@user.username} updated."
+      redirect_to admin_user_path(@user), notice: "Reward #{@user.username} updated."
     else
       flash.now[:errors] = @user.errors.full_messages.join(", ")
       render :edit
@@ -34,7 +38,7 @@ class UsersController < ApplicationController
 
   def destroy
     if @user.destroy
-      redirect_to users_path, notice: "Reward #{@user.username} removed."
+      redirect_to admin_users_path, notice: "Reward #{@user.username} removed."
     else
       flash.now[:errors] = @user.errors.full_messages.join(", ")
       redirect_to @user
@@ -47,6 +51,6 @@ class UsersController < ApplicationController
   end
 
   def set_user
-    @user = current_user
+    @user = User.friendly.find(params[:id])
   end
 end
