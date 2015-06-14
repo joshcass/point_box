@@ -1,6 +1,6 @@
 <h1>Rewards Index</h1>
 <ul>
   <% @rewards.each do |reward| %>
-    <li><%= link_to reward.title, reward %></li>
+    <li><%= link_to reward.title, reward %> <%= image_tag @reward.image.url if @reward.image.exists? %></li>
   <% end %>
 </ul>

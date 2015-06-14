@@ -1,5 +1,6 @@
 <h1><%= @reward.title %></h1>
 
+<p><%= image_tag @reward.image.url if @reward.image.exists? %></p>
 <p><%= @reward.description %></p>
 <p>Cost: <%= @reward.cost %> points</p>
 <br>
