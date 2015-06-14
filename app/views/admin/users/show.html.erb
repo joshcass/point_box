@@ -6,7 +6,7 @@
 <p>All Time Points Awarded: <%= @user.points_total %></p>
 <br>
 <h3>Rewards Purchased:</h3>
-<%= render partial: 'reward', collection: @user.rewards %>
+<%= render partial: 'users/reward', collection: @user.rewards %>
 <br>
 
 <%= form_tag admin_user_points_path(@user), method: :post do %>

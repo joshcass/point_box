@@ -1,13 +1,22 @@
-<%= form_for [:admin, @reward] do |f| %>
-<%= f.label :title %>
-<%= f.text_field :title %>
+<%= form_for [:admin, @reward,], html: {multipart: true} do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
 
-<%= f.label :description %>
-<%= f.text_area :description %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
 
-<%= f.label :cost %>
-<%= f.text_field :cost %>
-
-<%= f.submit %>
+  <%= f.label :cost %>
+  <%= f.text_field :cost %>
+  <p>
+    <% if @reward.image.exists? %>
+      <%= image_tag @reward.image.url, height: '100' %><br>
+      <%= f.label :image, "Attach a new Image" %><br>
+      <%= f.file_field :image %>
+    <% else %>
+      <%= f.label :image, "Attach a new Image" %><br>
+      <%= f.file_field :image %>
+    <% end %>
+   </p>
+    <%= f.submit %>
 
 <% end %>
