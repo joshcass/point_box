@@ -29,7 +29,7 @@ class Admin::UsersController < Admin::BaseController
 
   def update
     if @user.update valid_params
-      redirect_to admin_user_path(@user), notice: "Reward #{@user.username} updated."
+      redirect_to admin_user_path(@user), notice: "User #{@user.username} updated."
     else
       flash.now[:errors] = @user.errors.full_messages.join(", ")
       render :edit
@@ -38,7 +38,7 @@ class Admin::UsersController < Admin::BaseController
 
   def destroy
     if @user.destroy
-      redirect_to admin_users_path, notice: "Reward #{@user.username} removed."
+      redirect_to admin_users_path, notice: "User #{@user.username} removed."
     else
       flash.now[:errors] = @user.errors.full_messages.join(", ")
       redirect_to @user
