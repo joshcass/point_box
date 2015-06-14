@@ -3,5 +3,4 @@
 <p><%= @reward.description %></p>
 <p>Cost: <%= @reward.cost %> points</p>
 <br>
-<%= link_to "Edit", edit_reward_path(@reward) %><br>
-<%= link_to "Delete", @reward, data: {confirm: "Really delete #{@reward.title}?"}, method: 'delete' %>
+<%= link_to "Purchase", reward_purchases_path(@reward), method: 'post' %>

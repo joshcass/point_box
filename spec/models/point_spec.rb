@@ -14,5 +14,9 @@ RSpec.describe Point, type: :model do
 
   it 'can only have a status of awarded or redeemed' do
     expect { point.status = "superfun" }.to raise_error(ArgumentError)
-    end
+  end
+
+  it 'belongs to a user' do
+    expect(point).to respond_to(:user)
+  end
 end

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Reward, type: :model do
-    let(:reward) { Reward.create!(title: "toy yoda", description: "it's a toy yoda", cost: 1) }
+    let(:reward) { Fabricate(:reward) }
 
     it 'is valid' do
       expect(reward).to be_valid
@@ -25,6 +25,10 @@ RSpec.describe Reward, type: :model do
     it 'must have a whole number value for cost' do
       reward.cost = 1.23
       expect(reward).not_to be_valid
+    end
+
+    it 'has users' do
+      expect(reward).to respond_to(:users)
     end
 
   end

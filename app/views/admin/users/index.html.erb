@@ -1,0 +1,14 @@
+<h1>User Index</h1>
+<ul>
+  <% @users.default.each do |user| %>
+    <li><%= link_to user.username, admin_user_path(user) %></li>
+  <% end %>
+</ul>
+<h1>Admin Index</h1>
+<ul>
+  <% @users.admin.each do |user| %>
+    <li><%= link_to user.username, admin_user_path(user) %></li>
+  <% end %>
+</ul>
+
+<%= link_to "Create New User", new_admin_user_path %>

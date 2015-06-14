@@ -27,7 +27,7 @@ gem 'puma'
 
 gem 'friendly_id', '~> 5.1.0'
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+ gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -46,5 +46,15 @@ group :development, :test do
   gem 'spring'
 
   gem 'rspec-rails'
+
+  gem 'fabrication'
+
+  gem 'capybara'
+
+  gem 'launchy'
+
+  gem 'database_cleaner'
+
+  gem 'faker'
 end
 
