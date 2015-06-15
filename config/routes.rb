@@ -16,4 +16,6 @@ Rails.application.routes.draw do
       delete '/points', to: 'points#destroy'
     end
   end
+
+  root to: 'rewards#index'
 end

@@ -9,16 +9,16 @@
 <%= render partial: 'users/reward', collection: @user.rewards %>
 <br>
 
-<%= form_tag admin_user_points_path(@user), method: :post do %>
+<%= form_tag admin_user_points_path(@user), method: :post, id: 'award_points_form' do %>
   <%= label_tag(:quantity, "Award Points") %>
   <%= number_field_tag(:quantity) %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag "Award" %>
 <% end %>
 
-<%= form_tag admin_user_points_path(@user), method: :delete, data: {confirm: "Retract points?"} do %>
+<%= form_tag admin_user_points_path(@user), method: :delete, data: {confirm: "Retract points?"}, id: 'retract_points_form' do %>
   <%= label_tag(:quantity, "Retract Points") %>
   <%= number_field_tag(:quantity) %>
-  <%= submit_tag "Submit" %>
+  <%= submit_tag "Retract" %>
 <% end %>
 
 <%= link_to "Edit", edit_admin_user_path(@user) %><br>

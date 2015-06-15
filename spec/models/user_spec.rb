@@ -20,3 +20,4 @@ RSpec.describe User, type: :model do
     expect(user).to respond_to(:rewards)
   end
 end
+

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe RewardsController, type: :controller do
+RSpec.describe Admin::RewardsController, type: :controller do
+
+  let(:admin) { User.create(username: "hansolo", password: "password", password_confirmation: "password", role: 1)}
 
   let(:valid_attributes) {
     {title: "Toy Yoda", description: "It's a toy yoda", cost: 5}
@@ -10,7 +12,7 @@ RSpec.describe RewardsController, type: :controller do
     {title: nil, description: nil, cost: nil}
   }
 
-  let(:valid_session) { {} }
+  let(:valid_session) { {user_id: admin.id} }
 
   describe "GET #new" do
     it "assigns a new reward as @reward" do
@@ -44,7 +46,7 @@ RSpec.describe RewardsController, type: :controller do
       it "redirects to the reward" do
         post :create, {:reward => valid_attributes}, valid_session
         reward = Reward.all.first
-        expect(response).to redirect_to(reward)
+        expect(response).to redirect_to(admin_reward_path(reward))
       end
     end
 
@@ -84,7 +86,7 @@ RSpec.describe RewardsController, type: :controller do
       it "redirects to the reward" do
         reward = Reward.create! valid_attributes
         put :update, {:id => reward.to_param, :reward => valid_attributes}, valid_session
-        expect(response).to redirect_to(reward)
+        expect(response).to redirect_to(admin_reward_path(reward))
       end
     end
 
@@ -114,7 +116,7 @@ RSpec.describe RewardsController, type: :controller do
     it "redirects back to the rewards" do
       reward = Reward.create! valid_attributes
       delete :destroy, {:id => reward.to_param}, valid_session
-      expect(response).to redirect_to(rewards_path)
+      expect(response).to redirect_to(admin_rewards_path)
     end
   end
 end
